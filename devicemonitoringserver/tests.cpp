@@ -6,6 +6,8 @@
 #include <servermock/connectionservermock.h>
 #include <servermock/taskqueue.h>
 
+#include "deviceworkschedule.h"
+
 void monitoringServerTest1()
 {
     // TODO: дописать тест
@@ -15,6 +17,14 @@ void monitoringServerTest1()
 
     const uint64_t deviceId = 111;
     const uint64_t serverId = 11;
+
+    std::vector<uint8_t> meterages {1};
+    std::vector<Phase> phases {{0,1}};
+    DeviceWorkSchedule schedule {deviceId,phases};
+
+
+
+
     ASSERT(device.bind(deviceId));
     ASSERT(server.listen(serverId));
     ASSERT(device.connectToServer(serverId));

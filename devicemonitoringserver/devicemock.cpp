@@ -51,11 +51,20 @@ DeviceMock::DeviceMock(AbstractClientConnection* clientConnection) :
         DeviceMock* m_client = nullptr;
     };
     m_clientConnection->setMessageHandler(new MessageHandler(this));
+
+    auto* messageSerialiser = new MessageSerialiser;
+    m_serial = messageSerialiser;
+
+    auto* messageEncoder = new MessageEncoder;
+    m_encoder = messageEncoder;
 }
 
 DeviceMock::~DeviceMock()
 {
     delete m_clientConnection;
+
+    delete m_serial;
+    delete m_encoder;
 }
 
 bool DeviceMock::bind(uint64_t deviceId)
@@ -106,6 +115,24 @@ void DeviceMock::sendNextMeterage()
         return;
     const auto meterage = m_meterages.at(m_timeStamp);
     (void)meterage;
+    auto timeStamp = m_timeStamp;
     ++m_timeStamp;
     // TODO: Сформировать std::string и передать в sendMessage
+
+    std::string Message = m_serial->serialize_Message(meterage,timeStamp);
+
+//    RO3 ro3;
+//    BaseEncoderExecutor *p_U1 = reinterpret_cast <BaseEncoderExecutor*> (&ro3);
+//    m_encoder->registration_algorithm(p_U1);
+
+    //m_encoder->choice_algoithm("RO3");
+
+    Message = m_encoder->encode(Message);
+    m_clientConnection->sendMessage(Message);
+
+}
+
+std::string DeviceMock::setEncodingAlgoritm(BaseEncoderExecutor* EncodeAlgoritm)
+{
+    m_encoder->registration_algorithm(EncodeAlgoritm);
 }
