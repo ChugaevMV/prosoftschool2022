@@ -5,6 +5,8 @@
 
 #include <cassert>
 
+#include <iostream>
+
 namespace
 {
 
@@ -17,7 +19,10 @@ struct SendMessageTask final : public AbstractTask
     {
         auto* channel = dynamic_cast<ConnectionChannel*>(m_channel.data());
         if (channel)
+        {
+            //std::cout << "SendMessageTask: " << "Send Message = " << m_message << std::endl;
             channel->onMessageReceived(m_message);
+        }
     }
 
 private:
@@ -59,7 +64,10 @@ void ConnectionChannel::sendMessage(const std::string& message)
         return;
     auto* peerChannel = dynamic_cast<ConnectionChannel*>(m_peerChannel.data());
     if (peerChannel && peerChannel->connected())
+    {
+        //std::cout << "ConnectionChannel::sendMessage: " << "Send Message = " << message << std::endl;
         m_taskQueue.scheduleTask(new SendMessageTask(message, peerChannel));
+    }
 }
 
 void ConnectionChannel::connect(ConnectionChannel* peer)

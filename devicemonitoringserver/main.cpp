@@ -14,6 +14,10 @@
 #include <multiply41.h>
 #include <messageencoder.h>
 
+
+#include <commandcenter.h>
+#include <devicemonitoringserver.h>
+
 using namespace std;
 int main()
 {
@@ -25,31 +29,31 @@ int main()
     RUN_TEST(tr, monitoringServerTest1);
 
         //Проверка работы MessageSerializer
-    string Type1 = {"Meterage"}, Type2;
-    uint8_t Meterage1 = 50;
-    uint8_t Meterage2;
-    uint64_t Time1 = 5, Time2;
-    double Command = -7.5;
-    string Type_error = {"NoTimestamp"};
+//    string Type1 = {"Meterage"}, Type2;
+//    uint8_t Meterage1 = 82;
+//    uint8_t Meterage2;
+//    uint64_t Time1 = 5, Time2;
+//    double Command = -31;
+//    string Type_error = {"NoTimestamp"};
 
-    MessageSerialiser Message;
+//    MessageSerialiser Message;
 
 
-    string Write1 = Message.serialize_Message(Meterage1,Time1);
-    string Write2 = Message.serialize_Message(Command);
-    string Write3 = Message.serialize_Message(Type_error);
+//    string Write1 = Message.serialize_Message(Meterage1,Time1);
+//    string Write2 = Message.serialize_Message(Command);
+//    string Write3 = Message.serialize_Message(Type_error);
 
-    cout << Write1 << endl;
-//    cout << Write2 << endl;
+    //cout << Write1 << endl;
+    //cout << Write2 << endl;
 //    cout << Write3 << endl;
 
-/*
-    cout << Message.GetTypeMessage(Write1) << endl;
-    cout << Message.GetMeterage(Write1) << endl;
-    cout << Message.GetTimeStamp(Write1) << endl;
-    cout << Message.GetTypeError(Write3) << endl;
-    cout << Message.GetCommand(Write2) << endl;
-*/
+
+//    cout << Message.GetTypeMessage(Write1) << endl;
+//    cout << Message.GetMeterage(Write1) << endl;
+//    cout << Message.GetTimeStamp(Write1) << endl;
+//    cout << Message.GetTypeError(Write3) << endl;
+//    cout << Message.GetCommand(Write2) << endl;
+
 
 
 
@@ -76,32 +80,96 @@ int main()
 
    //BaseEncoderExecutor *p_U1 = reinterpret_cast <BaseEncoderExecutor*> (p_multiply);
 
-//   MessageEncoder Encode;
+   //MessageEncoder Encode;
 
-//   Multiply41 multiply;
+   //Multiply41 multiply;
 
-//   RO3 ro3;
+   //RO3 ro3;
 
-//   Mirror mirror;
+   //Mirror mirror;
 
-//   BaseEncoderExecutor *p_U1 = reinterpret_cast <BaseEncoderExecutor*> (&multiply);
+   //BaseEncoderExecutor *p_U1 = reinterpret_cast <BaseEncoderExecutor*> (&multiply);
 
-//   //Encode.choice_algoithm(P1);
+   //string P1 = "Multiply41";
 
-//   Encode.registration_algorithm(p_U1);
+   //Encode.choice_algoithm(P1);
 
-//   string M1 = Encode.encode(Write1);
+   //Encode.registration_algorithm(p_U1);
 
-//   //cout << "M = " << M1 << endl;
+   //string M1 = Encode.encode(Write1);
 
-//   string N1 = Encode.decode(M1);
+   //cout << "M = " << M1 << endl;
 
-//   //cout << "N = " << N1 << endl;
+   //string N1 = Encode.decode(M1);
 
-//   cout << "M = " << M1 << " " << "N = " << N1 << endl;
+   //cout << "N = " << N1 << endl;
+
+   //cout << "M = " << M1 << " " << "N = " << N1 << endl;
 
 
     // TODO: собственные тесты
+
+
+
+//    CommandCenter commandcenter;
+
+//    //DeviceMonitoringServer devicemonitoringserver;
+
+//    string MessageToCommandCenter = "TestMessage";
+
+//    string MessageFromCommandCenter = "";
+
+    //1 вариант: devicemonitoringserver.SendMessageToCommandCenter(commandcenter, MessageToCommandCenter, MessageFromCommandCenter);
+
+    //commandcenter.GetCommandMessage(MessageToCommandCenter, MessageFromCommandCenter);
+
+
+//    map <int, int> mp;
+
+//    mp[1] = 4;
+//    mp[2] = 3;
+
+//    map <int, int>::iterator it = mp.begin();
+
+//    it++;
+
+/*    for (int i=0; it != mp.end(); it++, i++){
+        if(it -> first == 1) cout << "already use" << endl;
+        else
+            cout << it->first << " " << it ->second << endl;
+
+    }
+*/
+
+    //it->second = 5;
+
+//    int g = it->second;
+
+//    cout << g << endl;
+
+//    g = 10;
+
+//    it->second = g;
+
+//    cout << it->second << endl;
+
+
+
+//    cout << it->first << " " << it ->second << endl;
+
+//    it = mp.find(3);
+
+//        cout << it->first << " " << it ->second << endl;
+
+
+//    uint8_t met = 5;
+//    double com = -3;
+
+
+//    double u_meterages = static_cast <double> (met);
+//    u_meterages = u_meterages + com;
+
+//    cout << u_meterages << endl;
 
     return 0;
 }

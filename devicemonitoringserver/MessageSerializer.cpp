@@ -78,7 +78,11 @@ uint8_t MessageSerialiser::GetMeterage(const std::string &message)
     std::string Type_Message;
     uint64_t Time;
     uint8_t Meterage;
-    strm_out >> Type_Message >> Meterage >> Time;
+    double d_Met;
+
+    strm_out >> Type_Message >> d_Met >> Time;
+
+    Meterage = static_cast <uint8_t> (d_Met);
 
     return Meterage;
 }
@@ -88,7 +92,7 @@ uint64_t MessageSerialiser::GetTimeStamp(const std::string &message)
     std::istringstream strm_out(message);
     std::string Type_Message;
     uint64_t Time;
-    uint8_t Meterage;
+    double Meterage;
     strm_out >> Type_Message >> Meterage >> Time;
 
     return Time;

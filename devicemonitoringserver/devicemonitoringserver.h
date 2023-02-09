@@ -6,6 +6,11 @@
 #include <cstdint>
 #include <string>
 
+#include "MessageSerializer.h"
+#include "messageencoder.h"
+
+#include "commandcenter.h"
+
 struct DeviceWorkSchedule;
 class AbstractConnectionServer;
 class AbstractConnection;
@@ -27,11 +32,13 @@ public:
     /*!
      * \brief Установить план работы устройств.
      */
-    void setDeviceWorkSchedule(const DeviceWorkSchedule&);
+    void setDeviceWorkSchedule(const DeviceWorkSchedule& Schedule);
     /*!
      * \brief Начать прием подключений по идентификатору \a serverId
      */
     bool listen(uint64_t serverId);
+
+    void setEncodingAlgoritm(BaseEncoderExecutor* EncodeAlgoritm);
 
 private:
     /*!
@@ -57,12 +64,20 @@ private:
      */
     void onDisconnected(uint64_t clientId);
 
+
+
 private:
     void addMessageHandler(AbstractConnection* conn);
     void addDisconnectedHandler(AbstractConnection* conn);
 
 private:
     AbstractConnectionServer* m_connectionServer = nullptr;
+
+    uint64_t m_this_deviceId = 0;
+
+    MessageSerialiser* m_serial = nullptr;
+    MessageEncoder* m_encoder = nullptr;
+    CommandCenter* m_commandcenter = nullptr;
 };
 
 #endif // DEVICEMONITORINGSERVER_H

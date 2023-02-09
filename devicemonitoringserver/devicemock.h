@@ -47,6 +47,8 @@ public:
      */
     void startMeterageSending();
 
+    void setEncodingAlgoritm(BaseEncoderExecutor* EncodeAlgoritm);
+
 private:
     /*!
      * \brief Отправить следующее измерение.
@@ -71,7 +73,7 @@ private:
     void onMessageReceived(const std::string& message);
 
 
-    std::string setEncodingAlgoritm(BaseEncoderExecutor* EncodeAlgoritm);
+
 
 private:
     AbstractClientConnection* m_clientConnection = nullptr;
@@ -80,6 +82,8 @@ private:
 
     MessageSerialiser* m_serial = nullptr;
     MessageEncoder* m_encoder = nullptr;
+
+    std::vector <double> m_CommandFromServer;
 };
 
 #endif // DEVICE_H
